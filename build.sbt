@@ -12,19 +12,13 @@ lazy val root = (project in file("."))
     libraryDependencies += "org.apache.hive" % "hive-exec" % "1.2.1" excludeAll
                            ExclusionRule(organization = "org.pentaho"),
     libraryDependencies += "org.apache.hadoop" % "hadoop-common" % "2.7.3",
-    libraryDependencies += "org.apache.httpcomponents" % "httpclient" % "4.3.4",
     libraryDependencies += "org.apache.hadoop" % "hadoop-client" % "2.6.0",
     libraryDependencies += "org.apache.hive" % "hive-service" % "1.2.1",
     libraryDependencies += "org.apache.hive" % "hive-cli" % "1.2.1",
     libraryDependencies += "org.apache.hive" % "hive-jdbc" % "3.1.2",
 
 
-    // App requires logging classes, last 2 seemed to fix it, keeping all just in case
-    libraryDependencies += "org.slf4j" % "slf4j-log4j12" % "1.7.25" % Test,
-    libraryDependencies += "org.slf4j" % "slf4j-api" % "1.7.25",
-    libraryDependencies += "org.slf4j" % "slf4j-simple" % "1.7.25" % Test,
-    libraryDependencies += "org.apache.logging.log4j" % "log4j-api" % "2.12.1",
-    libraryDependencies += "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.12.1" % Test
+    libraryDependencies += "org.apache.logging.log4j" % "log4j-api" % "2.17.1"
   )
 
 // Uncomment the following for publishing to Sonatype.
