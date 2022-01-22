@@ -1,4 +1,5 @@
 import clients.HiveClient
+import repos.UserRepo
 import models.User
 import services.UserService
 import sessions.UserSession
@@ -42,7 +43,7 @@ object Driver {
             case 1 => UserService.Login(username, password)
             case 2 => UserService.Register(username, password)
             case 3 => HiveClient.Close()
-            case _ => "Invalid option"
+            case _ => println("Invalid option")
         }
     }
 
@@ -66,7 +67,7 @@ object Driver {
 
             }
             case 3 => UserSession.End()
-            case _ => "Invalid option"
+            case _ => println("Invalid option")
         }
     }
 }
