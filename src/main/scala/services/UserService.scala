@@ -1,6 +1,7 @@
 package services
 
 import clients.HiveClient
+import repos.UserRepo
 import models.User
 import sessions.UserSession
 
@@ -8,7 +9,7 @@ object UserService {
 
     def Login(username: String, password: String): Unit = {
 
-        val target: User = HiveClient.Read(username, "Users")
+        val target: User = UserRepo.Read(username, "Users")
 
         if (target != null && username == target.Username() && password == target.Password()) {
             println('\n' + s"Logged in: $username" + '\n')
@@ -27,14 +28,14 @@ object UserService {
 
         val new_user: User = new User(username, password, "User")
         println("CREATED USER")
-        HiveClient.Create(new_user, "Users")
+        UserRepo.Create(new_user, "Users")
         println("ADDED USER TO TABLE")
 
     }
 
     def Change_Password(new_pass: String): Unit = {
 
-        val target: User = HiveClient.Read(UserSession.User(), "Users")
+        val target: User = UserRepo.Read(UserSession.User(), "Users")
 
         if (new_pass != target.Password()) {
           println("INCORRECT PASSWORD")
@@ -43,7 +44,7 @@ object UserService {
 
         val updated: User = new User(UserSession.User(), new_pass, "User")
 
-        HiveClient.Update(updated)
+        UserRepo.Update(updated)
 
     }
 }
