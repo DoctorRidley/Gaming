@@ -1,7 +1,6 @@
 package repos
 
 
-import clients.HiveClient
 import models.User
 
 
@@ -19,37 +18,33 @@ import java.sql.DriverManager
 // object w/ generics or something
 object UserRepo extends Repo[User] {
 
-    private var query: String = ""
-
-    def Get_Query(): String = query
-
-    def Create(new_user: User, table: String): Unit = {
+    def Create(new_user: User): Unit = {
 
         var item: Array[String] = new_user.toArray()
 
         var insert: String = "" + 
-          s"INSERT INTO TABLE $table" +
+          s"INSERT INTO TABLE Users" +
           s"\nVALUES ("
 
         for (i <- 0 until item.size - 1) {
             insert += '\"' + item(i) + "\", "
         }
 
-        query += '\"' + item.last + "\")"
+        query_str += '\"' + item.last + "\")"
 
-        println(query)
+        println(query_str)
 
-        Query(query)
+        Query_DB()
     }
 
-    def Read(username: String, table: String): User = {
-        val query: String = 
-          s"SELECT * FROM $table" + '\n' +
+    def Read(username: String): User = {
+
+          s"SELECT * FROM Users" + '\n' +
           "WHERE username = \"" + username + "\""
           // tfw scala doesn't support ANY
           // escape chars w/ string interpolation
 
-        val result: ResultSet = Query(query)
+        val result: ResultSet = Query_DB()
 
         var found_user: User = null
 
@@ -64,16 +59,14 @@ object UserRepo extends Repo[User] {
         return found_user
     }
 
-    def Update(old_user: User) : Unit = {
+    def Update(old_user: User): Unit = {
         
         val item: Array[String] = old_user.toArray()
 
-        query = ""
+        query_str = ""
 
         return
     }
 
     def Delete(user: User): Unit = {}
-
-    private def Query(query: String): ResultSet = HiveClient.Query_DB(super.friend)
 }
