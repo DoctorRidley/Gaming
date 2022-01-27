@@ -10,9 +10,10 @@ import java.sql.DriverManager
 
 abstract class Repo[T] {
 
-    protected var connection: Connection = null;
-    protected val driver_name: String = "org.apache.hive.jdbc.HiveDriver";
-    protected val con_uri: String = "jdbc:hive2://localhost:10000/gaming";
+    protected var connection: Connection = null
+    protected val driver_name: String = "org.apache.hive.jdbc.HiveDriver"
+    protected val con_uri: String = "jdbc:hive2://localhost:10000/gaming"
+    protected var statement: Statement = null
 
     protected var query_str: String = ""
 
@@ -35,7 +36,10 @@ abstract class Repo[T] {
 
     protected def Close(): Unit = {
 
-        try { if (connection != null) { connection.close(); } }
+        try {
+            if (statement != null) { statement.close() }
+            if (connection != null) { connection.close() }
+        }
 
         catch {
             case e: SQLException => {
@@ -51,18 +55,15 @@ abstract class Repo[T] {
         var result: ResultSet = null
 
         try {
-            val query: Statement = connection.createStatement()
-            result = query.executeQuery(query_str)
+            statement = connection.createStatement()
+            result = statement.executeQuery(query_str)
         }
 
         catch {
             case e: SQLException => {
-                throw new SQLException(s"${e.getMessage}")
+                e.printStackTrace()
+                Close()
             }
-        }
-
-        finally {
-            Close()
         }
 
         return result

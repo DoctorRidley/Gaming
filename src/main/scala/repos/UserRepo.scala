@@ -39,22 +39,26 @@ object UserRepo extends Repo[User] {
 
     def Read(username: String): User = {
 
-          s"SELECT * FROM Users" + '\n' +
+        query_str = 
+          "SELECT * FROM Users" + '\n' +
           "WHERE username = \"" + username + "\""
-          // tfw scala doesn't support ANY
-          // escape chars w/ string interpolation
 
         val result: ResultSet = Query_DB()
 
         var found_user: User = null
 
+        println("result:", result)
+
         while (result.next()) {
+            println(result.getString("username"))
             found_user = new User(
                 result.getString("username"),
                 result.getString("password"),
                 result.getString("type")
             )
         }
+
+        Close()
 
         return found_user
     }
