@@ -1,4 +1,3 @@
-import clients.HiveClient
 import repos.UserRepo
 import models.User
 import services.UserService
@@ -12,12 +11,8 @@ object Driver {
 
     def main(args: Array[String]): Unit = {
 
-        HiveClient.Connect()
-
         Account_Prompt()
         Account_Actions()
-
-        HiveClient.Close()
     }
 
     def Account_Prompt() {
@@ -42,7 +37,7 @@ object Driver {
         choice match {
             case 1 => UserService.Login(username, password)
             case 2 => UserService.Register(username, password)
-            case 3 => HiveClient.Close()
+            case 3 => return
             case _ => println("Invalid option")
         }
     }
