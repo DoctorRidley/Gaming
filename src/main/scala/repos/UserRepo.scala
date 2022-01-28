@@ -20,17 +20,17 @@ object UserRepo extends Repo[User] {
 
     def Create(new_user: User): Unit = {
 
-        var item: Array[String] = new_user.toArray()
+        var values: Array[String] = new_user.toArray()
 
-        var insert: String = "" + 
+        query_str = "" + 
           s"INSERT INTO TABLE Users" +
           s"\nVALUES ("
 
-        for (i <- 0 until item.size - 1) {
-            insert += '\"' + item(i) + "\", "
+        for (i <- 0 to values.size) {
+            query_str += '\"' + values(i) + "\", "
         }
 
-        query_str += '\"' + item.last + "\")"
+        query_str += '\"' + values.last + "\")"
 
         println(query_str)
 
@@ -47,11 +47,10 @@ object UserRepo extends Repo[User] {
 
         var found_user: User = null
 
-        println("result:", result)
-
         while (result.next()) {
             println(result.getString("username"))
             found_user = new User(
+                result.getString("id").toInt,
                 result.getString("username"),
                 result.getString("password"),
                 result.getString("type")
@@ -73,4 +72,18 @@ object UserRepo extends Repo[User] {
     }
 
     def Delete(user: User): Unit = {}
+
+    def Max_ID: Int = {
+        query_str = "SELECT MAX(id) FROM Users"
+        var id: Int = 0
+        val result: ResultSet = Query_DB()
+
+        while (result.next()) {
+            result.getInt("id")
+        }
+
+        Close()
+
+        return id
+    }
 }
