@@ -26,10 +26,10 @@ abstract class Repo[T] {
 
         catch {
               case e: ClassNotFoundException => {
-                  throw new ClassNotFoundException(s"${e.getMessage}")
+                  e.printStackTrace()
               }
               case e: SQLException => {
-                  throw new SQLException(s"${e.getMessage}")
+                  e.printStackTrace()
               }
         }
     }
@@ -43,7 +43,7 @@ abstract class Repo[T] {
 
         catch {
             case e: SQLException => {
-                throw new SQLException(s"${e.getMessage}")
+                e.printStackTrace()
             }
         }
     }
