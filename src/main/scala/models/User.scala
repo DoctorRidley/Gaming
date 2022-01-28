@@ -1,21 +1,29 @@
 package models
 
-class User(u: String, p: String, t: String) {
+import sessions.UserSession
 
+class User(i: Int, u: String, p: String, t: String) {
+
+    private var id: Int = i
     private val username: String = u
     private val password: String = p
     private val user_type: String = t
 
-    def Username(): String = username
-    def Password(): String = password
-    def Type(): String = user_type
+
+    def this(u: String, p: String, t: String) = this(-1, u, p, t)
+
+
+    def ID: Int = id
+    def Username: String = username
+    def Password: String = password
+    def Type: String = user_type
 
 
     def toArray(): Array[String] = {
-        return Array(username, password, user_type)
+        return Array(id.toString, username, password, user_type)
     }
 
     override def toString(): String = {
-        return s"$username, $password, $user_type"
+        return s"$id, $username, $password, $user_type"
     }
 }
