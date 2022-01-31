@@ -1,19 +1,38 @@
 package models
 
+
 import org.scalatest.FunSuite
 
 class UserSpec extends FunSuite {
 
-    test("Getters") {
+    val test1: User = new User(1, "Noob", "Jeep Stuff", "I got little birdie legs")
+    val test2: User = new User(123, "Noob", "PROMOOOOTEEEDDDD", "Colonel Killer")
+    val test3: User = new User("Noob", "Tug Tank", "Dip dip potato chip")
 
-        val test1: User = new User("Noob", "Jeep Stuff", "I got little birdie legs")
-        assert(test1.Username() == "Noob")
-        assert(test1.Password() == "Jeep Stuff")
-        assert(test1.Type() == "I got little birdie legs")
+    test ("Getters") {
+        assert(test1.ID == 1)
+        assert(test1.Username == "Noob")
+        assert(test1.Password == "Jeep Stuff")
+        assert(test1.Type == "I got little birdie legs")
 
-        val test2: User = new User("Noob", "PROMOOOOTEEEDDDD", "Colonel Killer")
-        assert(test2.Username() == "Noob")
-        assert(test2.Password() != "PROMOTED!")
-        assert(test2.Type() != "Col Killer")
+        assert(test2.ID == 123)
+        assert(test2.Username == "Noob")
+        assert(test2.Password != "PROMOTED!")
+        assert(test2.Type != "Col Killer")
+    }
+
+    test ("Constructor Overload") {
+        assert(test3.ID == -1)
+    }
+
+    test ("To Array") {
+
+        val arr1: Array[String] = Array("1", "Noob", "Jeep Stuff", "I got little birdie legs")
+        val arr2: Array[String] = Array("123", "Noob", "PROMOOOOTEEEDDDD", "Colonel Killer")
+        val arr3: Array[String] = Array("-1", "Noob", "Tug Tank", "Dip Dip Potato Chip")
+
+        assert(test1.toArray().sameElements(arr1))
+        assert(test2.toArray().sameElements(arr2))
+        assert(!test3.toArray().sameElements(arr3))
     }
 }
