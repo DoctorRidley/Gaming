@@ -1,4 +1,4 @@
-package clients
+package repos
 
 
 import models.User
@@ -7,19 +7,9 @@ import models.User
 import org.scalatest.FunSuite
 
 
-class HiveClientSepc extends FunSuite {
+class UserRepoSpec extends FunSuite {
 
-    test("Connection to Hive") {
-
-
-    }
-
-    test("") {
-
-
-    }
-
-    test("Reading Existing Account") {
+    test ("Reading Existing Account") {
 
 //        val found: User = UserRepo.Read("Admin", "Users")
 //        val target: User = new User("Admin", "root", "Admin")
@@ -28,7 +18,16 @@ class HiveClientSepc extends FunSuite {
 
     }
 
-    test("Reading Non-Existent Account") {
+    test ("Reading Non-Existent Account") {
+
+        // Assumes this user does not exist
+        val found: User = UserRepo.Read("34w8y9eaf_(Ui;oleiofuowabvhds")
+
+        assert(found == null)
+    }
+
+    test ("HiveQL Injection") {
+
 
     }
 
