@@ -35,4 +35,14 @@ class UserSpec extends FunSuite {
         assert(test2.toArray().sameElements(arr2))
         assert(!test3.toArray().sameElements(arr3))
     }
+
+    test ("To String") {
+        val str1: String = "1, Noob, Jeep Stuff, I got little birdie legs"
+        val str2: String = "123, Noob, PROMOOOOTEEEDDDD, Colonel Killer"
+        val str3: String = "-1, Noob, Tug Tank, Dip Dip Potato Chip"
+
+        assert(test1.toString() == str1)
+        assert(test2.toString() == str2)
+        assert(test3.toString() != str3)
+    }
 }
