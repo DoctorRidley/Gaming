@@ -14,27 +14,18 @@ import java.sql.ResultSet
 import java.sql.Statement
 import java.sql.DriverManager
 
-// TODO: Find some way to abstract
-// object w/ generics or something
 object UserRepo extends Repo[User] {
 
     def Create(new_user: User): Unit = {
 
-        var values: Array[String] = new_user.toArray()
-
         query_str = "" + 
           s"INSERT INTO TABLE Users" +
-          s"\nVALUES ("
-
-        for (i <- 0 to values.size) {
-            query_str += '\"' + values(i) + "\", "
-        }
-
-        query_str += '\"' + values.last + "\")"
+          s"\nVALUES (${new_user.toString()})"
 
         println(query_str)
 
         Query_DB()
+        Close()
     }
 
     def Read(username: String): User = {
@@ -62,16 +53,29 @@ object UserRepo extends Repo[User] {
         return found_user
     }
 
-    def Update(old_user: User): Unit = {
-        
-        val item: Array[String] = old_user.toArray()
+    def Update(update: User): Unit = {
 
-        query_str = ""
+        query_str = 
+          "UPDATE Users\n" +
+          "SET username = ${update.Username}, password = ${update.Password}" +
+          s" WHERE Users.ID = ${update.ID}"
 
-        return
+        println(query_str)
+
+        Query_DB()
+
+        Close()
     }
 
-    def Delete(user: User): Unit = {}
+    def Delete(user: User): Unit = {
+
+        query_str = 
+          "DELETE Users\n"
+          s"WHERE Users.ID = ${user.ID}"
+
+        Query_DB()
+        Close()
+    }
 
     def Max_ID: Int = {
         query_str = "SELECT MAX(id) FROM Users"
