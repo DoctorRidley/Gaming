@@ -25,12 +25,14 @@ object UserService {
 
     def Register(username: String, password: String): Unit = {
 
-        val new_user: User = new User(UserRepo.Max_ID+1, username, password, "User")
+        val new_user: User = new User(username, password)
         println("CREATED USER")
         UserRepo.Create(new_user)
         println("ADDED USER TO TABLE")
 
     }
+
+    def Change_Username(new_name: String): Unit = {}
 
     def Change_Password(new_pass: String): Unit = {
 
@@ -47,7 +49,7 @@ object UserService {
 
     }
 
-    private def Hash_Password(p: String): String = {
+    def Hash_Password(p: String): String = {
         return ""
     }
 }
