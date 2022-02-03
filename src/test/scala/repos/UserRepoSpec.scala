@@ -12,9 +12,10 @@ class UserRepoSpec extends FunSuite {
     test ("Reading Existing Account") {
 
 //        val found: User = UserRepo.Read("Admin", "Users")
-//        val target: User = new User("Admin", "root", "Admin")
+//        val target: User = new User("Admin", "root")
 
 //        assert(found.toString() == target.toString())
+        assert(false)
 
     }
 
@@ -26,9 +27,19 @@ class UserRepoSpec extends FunSuite {
         assert(found == null)
     }
 
+    test ("Create User Account") {
+
+        val new_user: User = new User("Admin", "password")
+        assert(false)
+
+    }
+
+    test ("Delete User Account") {
+        assert(false)
+    }
+
     test ("HiveQL Injection") {
-
-
+        assert(false)
     }
 
 
