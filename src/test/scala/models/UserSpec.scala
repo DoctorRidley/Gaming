@@ -7,7 +7,7 @@ class UserSpec extends FunSuite {
 
     val test1: User = new User(1, "Noob", "Jeep Stuff", "I got little birdie legs")
     val test2: User = new User(123, "Noob", "PROMOOOOTEEEDDDD", "Colonel Killer")
-    val test3: User = new User("Noob", "Tug Tank", "Dip dip potato chip")
+    val test3: User = new User("Noob", "Tug Tank")
 
     test ("Getters") {
         assert(test1.ID == 1)
@@ -23,6 +23,7 @@ class UserSpec extends FunSuite {
 
     test ("Constructor Overload") {
         assert(test3.ID == -1)
+        assert(test3.Type == "Standard")
     }
 
     test ("To Array") {
