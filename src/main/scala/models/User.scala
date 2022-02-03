@@ -9,15 +9,12 @@ class User(i: Int, u: String, p: String, t: String) {
     private val password: String = p
     private val user_type: String = t
 
-
-    def this(u: String, p: String, t: String) = this(-1, u, p, t)
-
+    def this(u: String, p: String) = this(-1, u, p, "Standard")
 
     def ID: Int = id
     def Username: String = username
     def Password: String = password
     def Type: String = user_type
-
 
     def toArray(): Array[String] = {
         return Array(id.toString, username, password, user_type)
