@@ -14,4 +14,21 @@ class UserServiceSpec extends FunSuite {
         //UserService.Login("Admin", "root")
     }
 
+    test ("Incorrect Username") {
+
+        //UserService.Login("asdifuashfaisfdkj", ";asklfanw.fe")
+    }
+
+    test ("Incorrect Password") {
+
+    }
+
+    test("Update Username") {
+
+    }
+
+    test ("Update Password") {
+
+    }
+
 }
