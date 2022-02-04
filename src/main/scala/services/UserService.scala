@@ -5,7 +5,7 @@ import models.User
 import sessions.UserSession
 
 
-import scala.io.stdIn.readLine
+import scala.io.StdIn.readLine
 
 
 object UserService {
@@ -33,7 +33,6 @@ object UserService {
         println("CREATED USER")
         UserRepo.Create(new_user)
         println("ADDED USER TO TABLE")
-
     }
 
     def Logout(): Unit = {
@@ -43,22 +42,43 @@ object UserService {
 
     def Change_Username(new_name: String): Unit = {}
 
-    def Change_Password(new_pass: String): Unit = {
+    def Change_Password(): Unit = {
 
         val target: User = UserRepo.Read(UserSession.User)
 
-        if (new_pass != target.Password) {
+        print("Confirm your password: ")
+        val confirm: String = readLine()
+
+        if (confirm != target.Password) {
           println("INCORRECT PASSWORD")
           return
         }
 
-        val updated: User = new User(UserSession.ID, UserSession.User, new_pass, UserSession.Type)
+        val new_pass: String = Hash_Password(Confirm_Password(), "")
 
+        val updated: User = new User(UserSession.ID, UserSession.User, new_pass, UserSession.Type)
         UserRepo.Update(updated)
 
+        // TODO: maybe use a logger when handling unit tests
     }
 
-    def Hash_Password(p: String): String = {
+    def Hash_Password(p: String, salt: String): String = {
         return p
+    }
+
+    private def Confirm_Password(): String = {
+
+        var new_pass, confirm: String = ""
+
+
+        do {
+            print("Enter new password: ")
+            new_pass = readLine()
+            print("Confirm: ")
+            confirm = readLine()
+            if (new_pass != confirm) { println("Passwords do not match") }
+        } while (new_pass != confirm)
+        
+        return new_pass
     }
 }
