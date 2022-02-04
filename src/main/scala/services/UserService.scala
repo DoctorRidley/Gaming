@@ -4,6 +4,10 @@ import repos.UserRepo
 import models.User
 import sessions.UserSession
 
+
+import scala.io.stdIn.readLine
+
+
 object UserService {
 
     def Login(username: String, password: String): Unit = {
@@ -32,6 +36,11 @@ object UserService {
 
     }
 
+    def Logout(): Unit = {
+
+        return
+    }
+
     def Change_Username(new_name: String): Unit = {}
 
     def Change_Password(new_pass: String): Unit = {
@@ -50,6 +59,6 @@ object UserService {
     }
 
     def Hash_Password(p: String): String = {
-        return ""
+        return p
     }
 }
