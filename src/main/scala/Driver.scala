@@ -37,7 +37,7 @@ object Driver {
         choice match {
             case 1 => UserService.Login(username, password)
             case 2 => UserService.Register(username, password)
-            case 3 => return
+            case 3 => System.exit(0)
             case _ => println("Invalid option")
         }
     }
@@ -55,12 +55,7 @@ object Driver {
         var choice: Int = readInt()
 
         choice match {
-            case 2 => {
-                print("Enter new password: ")
-                val new_pass: String = readLine()
-                UserService.Change_Password(new_pass)
-
-            }
+            case 2 => UserService.Change_Password()
             case 3 => UserSession.End()
             case _ => println("Invalid option")
         }
