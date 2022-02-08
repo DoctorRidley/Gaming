@@ -21,6 +21,9 @@ class User(i: Int, u: String, p: String, t: String) {
     }
 
     override def toString(): String = {
-        return s"$id, $username, $password, $user_type"
+        return s"$id, " + 
+               '\"' + s"$username" + "\", " + 
+               '\"' + s"$password" + "\", " + 
+               '\"' + s"$user_type" + '\"'
     }
 }
