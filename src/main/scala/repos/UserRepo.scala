@@ -79,15 +79,15 @@ object UserRepo extends Repo[User] {
 
     def Max_ID: Int = {
         query_str = "SELECT MAX(id) FROM Users"
-        var id: Int = 0
+        var count: Int = 0
         val result: ResultSet = Query_DB()
 
         while (result.next()) {
-            result.getInt("id")
+            count = result.getInt("id")
         }
 
         Close()
 
-        return id
+        return count
     }
 }
