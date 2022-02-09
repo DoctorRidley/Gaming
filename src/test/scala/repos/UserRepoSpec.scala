@@ -9,6 +9,17 @@ import org.scalatest.FunSuite
 
 class UserRepoSpec extends FunSuite {
 
+
+    test ("Create User Account") {
+
+        val username: String = "asdlfjaw0ei89y234aslkfashdf"
+        val new_user: User = new User(username, "password")
+        UserRepo.Create(new_user)
+        val read: User = UserRepo.Read(username)
+        assert(new_user.toString() == read.toString())
+        // FIXME; Maybe add == overloading
+    }
+
     test ("Reading Existing Account") {
 
 //        val found: User = UserRepo.Read("Admin", "Users")
@@ -22,20 +33,22 @@ class UserRepoSpec extends FunSuite {
     test ("Reading Non-Existent Account") {
 
         // Assumes this user does not exist
-        val found: User = UserRepo.Read("34w8y9eaf_(Ui;oleiofuowabvhds")
+        val found: User = UserRepo.Read("34w8y9eafUioleiofuowabvhds")
 
         assert(found == null)
     }
 
-    test ("Create User Account") {
-
-        val new_user: User = new User("Admin", "password")
+    test ("Update User Account") {
         assert(false)
-
     }
 
     test ("Delete User Account") {
-        assert(false)
+        val del: User = new User("aw8efhoisn043weiga", "password")
+        UserRepo.Create(del)
+        UserRepo.Delete(del)
+
+        val found: User = UserRepo.Read(del.Username)
+        assert(found == null)
     }
 
     test ("HiveQL Injection") {
