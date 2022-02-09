@@ -21,7 +21,7 @@ abstract class Repo[T] {
 
         try {
             Class.forName(driver_name)
-            connection = DriverManager.getConnection(con_uri, "", "")
+            connection = DriverManager.getConnection(con_uri, "hdoop", "")
         }
 
         catch {
