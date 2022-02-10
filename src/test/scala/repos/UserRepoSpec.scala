@@ -16,7 +16,7 @@ class UserRepoSpec extends FunSuite {
         val new_user: User = new User(username, "password")
         UserRepo.Create(new_user)
         val read: User = UserRepo.Read(username)
-        assert(new_user.toString() == read.toString())
+        assert(new_user.equals(read))
         // FIXME; Maybe add == overloading
     }
 
