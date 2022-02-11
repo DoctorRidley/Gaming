@@ -16,8 +16,8 @@ class UserRepoSpec extends FunSuite {
         val new_user: User = new User(username, "password")
         UserRepo.Create(new_user)
         val read: User = UserRepo.Read(username)
-        assert(new_user.equals(read))
-        // FIXME; Maybe add == overloading
+//        assert(new_user == read)
+        assert(false)
     }
 
     test ("Reading Existing Account") {
@@ -52,6 +52,8 @@ class UserRepoSpec extends FunSuite {
     }
 
     test ("HiveQL Injection") {
+        val inject: User = new User("test", "test\"; SELECT * FROM Users;")
+        //UserRepo.Create()
         assert(false)
     }
 
