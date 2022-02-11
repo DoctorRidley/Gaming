@@ -34,12 +34,13 @@ object UserRepo extends Repo[User] {
           "SELECT * FROM Users" + '\n' +
           "WHERE username = \"" + username + "\""
 
+        println(query_str)
+
         val result: ResultSet = Query_DB()
 
         var found_user: User = null
 
         while (result.next()) {
-            println(result.getString("username"))
             found_user = new User(
                 result.getString("id").toInt,
                 result.getString("username"),
@@ -72,6 +73,8 @@ object UserRepo extends Repo[User] {
         query_str = 
           "DELETE Users\n"
           s"WHERE Users.ID = ${user.ID}"
+
+        println(query_str)
 
         Query_DB()
         Close()
