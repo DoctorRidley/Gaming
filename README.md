@@ -3,7 +3,7 @@
 This is a Big Data app designed to analyze gaming trends on YouTube. The app is built in Scala and saves data to Hive
 
 ## Description
-This project allows users to create accounts and to analyze data on YouTube gaming videos using Youtube's API. ANy registered user can analyze the data, but only an administrator may get new data. The app will target trending videos.
+This project allows users to create accounts and to analyze data on YouTube gaming videos using Youtube's API. Any registered user can analyze the data, but only an administrator may get new data. The app will target trending videos.
 
 ## Analysis
 
