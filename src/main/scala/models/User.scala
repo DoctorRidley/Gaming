@@ -18,6 +18,7 @@ class User(i: Int, u: String, p: String, t: String) {
     def Username: String = username
     def Password: String = password
     def Type: String = user_type
+    def TEMP: LocalDateTime = temp
 
     def toArray(): Array[String] = {
         return Array(id.toString, username, password, user_type)
