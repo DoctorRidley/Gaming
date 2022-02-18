@@ -12,7 +12,7 @@ This project allows users to create accounts and to analyze data on YouTube gami
 - What percentage of trending games are new releases?
 - Distribution of videos per game.
 
-### Creators
+### Content Creators
 - Number of subsribers
 - Average views per video
 - Whether or not creators focus on a single game/franchise.
